@@ -28,7 +28,7 @@ st.markdown(
 
 st.header('Disclaimer 	:heavy_exclamation_mark:')
 st.text('Data diambil berdasarkkan jawaban responden dari pelaku/karyawan UMKM yang memungkinkan diisi tidak sesuai realita')
-tabel = pd.read_csv('https://raw.githubusercontent.com/MaulanaYusufIkhsanRobbani/CapstoneProjectTetrisDQLABBatch4/blob/main/data_umkm_ke4_openrevine_202402171115.csv', on_bad_lines='skip)
+tabel = pd.read_csv('https://raw.githubusercontent.com/MaulanaYusufIkhsanRobbani/CapstoneProjectTetrisDQLABBatch4/blob/main/data_umkm_ke4_openrevine_202402171115.csv')
 numerik = ['ID_DT_BINAAN_EXCEL','TAHUN_MULAI_USAHA','UMUR',
            'JML_TENAGA_KERJA_2019','JML_TENAGA_KERJA_2020',
            'JML_TENAGA_KERJA_2021','OMSET_2019','OMSET_2020',
