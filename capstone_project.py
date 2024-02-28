@@ -369,7 +369,7 @@ with col1:
     ('PENDIDIKAN', 'DAPAT_KREDIT','PERLU_PINJAMAN_PIHAK_LUAR')
     )
     plt.figure(figsize=(64,10))
-    sns.catplot(data=tabel, x=kolom_kategorik, y='RATA2_OMSET', kind="violin", inner=None)
+    sns.violinplot(data=tabel, x=kolom_kategorik, y='RATA2_OMSET', inner=None)
     plt.title('Violin Plot Korelasi '+kolom_kategorik+' dengan omset')
     plt.xticks(rotation =45)
     st.pyplot(plt)
