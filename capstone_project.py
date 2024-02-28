@@ -19,20 +19,16 @@ st.subheader(":green[Sehingga penting untuk menelisik lebih dalam kondisi UMKM d
 st.subheader("Penjelasan mengenai dataset")
 st.text("Data set yang akan dijadikan bahan analisis berasal dari website Satu Data Jawa Timur pada tab data UKM dengan filter Data Baru/Binaan")
 st.text("Pengambilan data dilakukan dengan aplikasi ketiga yaitu Octoparse. Kemudian dilakukan data cleaning dengan memanfaatkan query untuk membuat tabel baru")
-st.text("Berikut adalah sumber website dan file csv nya")
+st.text("Berikut adalah sumber website ")
 st.markdown(
     """
     [Satu Data Jawa Timur](https://data.diskopukm.jatimprov.go.id/satu_data/)
     """
 )
-st.markdown(
-    """
-    [File UMKM](https://drive.google.com/file/d/1c4u-mV5qEh74p3Z0bBx6wibilb8jj8u4/view?usp=drive_link)
-    """
-)
+
 st.header('Disclaimer 	:heavy_exclamation_mark:')
 st.text('Data diambil berdasarkkan jawaban responden dari pelaku/karyawan UMKM yang memungkinkan diisi tidak sesuai realita')
-tabel = pd.read_csv('https://raw.githubusercontent.com/MaulanaYusufIkhsanRobbani/CapstoneProjectTetrisDQLABBatch4/blob/main/data_umkm_ke4_openrevine_202402171115.csv')
+tabel = pd.read_csv('https://raw.githubusercontent.com/MaulanaYusufIkhsanRobbani/CapstoneProjectTetrisDQLABBatch4/blob/main/data_umkm_ke4_openrevine_202402171115.csv', on_bad_lines='skip)
 numerik = ['ID_DT_BINAAN_EXCEL','TAHUN_MULAI_USAHA','UMUR',
            'JML_TENAGA_KERJA_2019','JML_TENAGA_KERJA_2020',
            'JML_TENAGA_KERJA_2021','OMSET_2019','OMSET_2020',
