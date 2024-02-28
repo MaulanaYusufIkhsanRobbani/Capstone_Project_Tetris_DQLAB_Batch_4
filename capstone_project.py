@@ -368,7 +368,7 @@ with col1:
     'Pilih kolom kategorik',
     ('PENDIDIKAN', 'DAPAT_KREDIT','PERLU_PINJAMAN_PIHAK_LUAR')
     )
-    plt.figure(figsize=(64,10))
+    plt.figure(figsize=(64,64))
     sns.violinplot(data=tabel, x=kolom_kategorik, y='RATA2_OMSET', inner=None)
     plt.title('Violin Plot Korelasi '+kolom_kategorik+' dengan omset')
     plt.xticks(rotation =45)
@@ -405,7 +405,7 @@ kolom_kabkota = st.multiselect(
 )
 st.markdown('Omset per Tahun')
 tabel_melted_filtered = tabel_melted[tabel_melted['KAB_KOTA'].isin(kolom_kabkota)]
-plt.figure(figsize=(24,12))
+plt.figure(figsize=(24,20))
 sns.lineplot(data=tabel_melted_filtered, x='Year', y='OMSET', hue='KAB_KOTA')
 plt.ylim(0, tabel_melted_filtered['OMSET'].max() * 0.5) #0.5 buat stretch smb y
 plt.legend(prop={'size': 5})
@@ -442,7 +442,6 @@ target = tabel[['RATA2_OMSET']]
 
 feature_purchase_train, feature_purchase_test, target_purchase_train, target_purchase_test = train_test_split(feature, target, test_size=0.20, random_state=42)
 
-from sklearn.experimental import enable_hist_gradient_boosting  # noqa
 from sklearn.ensemble import HistGradientBoostingRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
