@@ -28,7 +28,7 @@ st.markdown(
 
 st.header('Disclaimer 	:heavy_exclamation_mark:')
 st.text('Data diambil berdasarkkan jawaban responden dari pelaku/karyawan UMKM yang memungkinkan diisi tidak sesuai realita')
-tabel = pd.read_csv('https://raw.githubusercontent.com/MaulanaYusufIkhsanRobbani/CapstoneProjectTetrisDQLABBatch4/main/data_umkm_ke4_openrevine_202402171115.csv')
+tabel = pd.read_csv('../projectDQLab/data_umkm_ke4_openrevine_202402171115.csv')
 numerik = ['ID_DT_BINAAN_EXCEL','TAHUN_MULAI_USAHA','UMUR',
            'JML_TENAGA_KERJA_2019','JML_TENAGA_KERJA_2020',
            'JML_TENAGA_KERJA_2021','OMSET_2019','OMSET_2020',
@@ -368,8 +368,8 @@ with col1:
     'Pilih kolom kategorik',
     ('PENDIDIKAN', 'DAPAT_KREDIT','PERLU_PINJAMAN_PIHAK_LUAR')
     )
-    plt.figure(figsize=(64,64))
-    sns.violinplot(data=tabel, x=kolom_kategorik, y='RATA2_OMSET')
+    plt.figure(figsize=(64,10))
+    sns.violinplot(data=tabel, x=kolom_kategorik, y='RATA2_OMSET', inner=None)
     plt.title('Violin Plot Korelasi '+kolom_kategorik+' dengan omset')
     plt.xticks(rotation =45)
     st.pyplot(plt)
@@ -405,7 +405,7 @@ kolom_kabkota = st.multiselect(
 )
 st.markdown('Omset per Tahun')
 tabel_melted_filtered = tabel_melted[tabel_melted['KAB_KOTA'].isin(kolom_kabkota)]
-plt.figure(figsize=(24,20))
+plt.figure(figsize=(24,12))
 sns.lineplot(data=tabel_melted_filtered, x='Year', y='OMSET', hue='KAB_KOTA')
 plt.ylim(0, tabel_melted_filtered['OMSET'].max() * 0.5) #0.5 buat stretch smb y
 plt.legend(prop={'size': 5})
