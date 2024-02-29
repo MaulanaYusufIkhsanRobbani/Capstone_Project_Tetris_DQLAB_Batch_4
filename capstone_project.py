@@ -368,7 +368,7 @@ with col1:
     'Pilih kolom kategorik',
     ('PENDIDIKAN', 'DAPAT_KREDIT','PERLU_PINJAMAN_PIHAK_LUAR')
     )
-    plt.figure(figsize=(64,10))
+    plt.figure(figsize=(16,16))
     sns.violinplot(data=tabel, x=kolom_kategorik, y='RATA2_OMSET', inner=None)
     plt.title('Violin Plot Korelasi '+kolom_kategorik+' dengan omset')
     plt.xticks(rotation =45)
@@ -381,6 +381,7 @@ with col2:
     st.markdown(
         """ Terlihat bahwa dapat tidaknya kredit suatu usaha tidak memengaruhi jumlah omset dan perlu tidaknya pinjaman luar juga tidak memengaruhi banyaknya omset yang dimiliki suatu usaha"""
     )
+
 #Visualisasi ke
 kolom_omset= st.select_slider(
     'Masukan Tahun',
@@ -388,11 +389,12 @@ kolom_omset= st.select_slider(
 )
 st.header('Jumlah Omset per Tahun Tiap Daerah 	:bar_chart:')
 #plt.figure(figsize=(24,24))
-plt.figure(figsize=(24,20))
-sns.barplot(data=tabel, y = 'KAB_KOTA',x = kolom_omset, width = 0.2)
-plt.title('Jumlah Omset per Tahun Tiap Daerah ')
+plt.figure(figsize=(24,24))
+sns.barplot(data=tabel, y = 'KAB_KOTA',x = kolom_omset)
+plt.title('Jumlah omset per tahun tiap daerah')
 st.pyplot(plt)
 plt.clf()
+
 st.markdown('Tiap daerah cenderung mengalami penurunan omset dari tahun 2019 ke 2021. Kemungkinan besar diakibatkan pandemi pada tahun tersebut sehingga aktivitas perekonomian yang terbatas mengakibatkan penurunan omset. Pada tahun 2019 Lumajang menjadi daerah dengan omset rata-rata tertinggi di Jawa Timur sampai tahun 2020 dan pada akhirnya tahun 2021 beralih ke Pacitan. Jika dilihat seksama, Kota Probolinggo memiliki ketimpangan omset yang jauh besar terlihat selisih nilai maksimum dari omset pelaku UMKM disana dengan rata-rata omset tahunan disana sangat besar')
 # Filter the DataFrame
 tabel_melted = tabel.melt(id_vars='KAB_KOTA', value_vars=['OMSET_2019', 'OMSET_2020', 'OMSET_2021'], var_name='Year', value_name='OMSET')
