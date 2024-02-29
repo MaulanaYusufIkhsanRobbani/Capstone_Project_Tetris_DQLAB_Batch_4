@@ -3,4 +3,4 @@ pandas
 matplotlib
 seaborn
 numpy
-sckit-learn
+scklearn
