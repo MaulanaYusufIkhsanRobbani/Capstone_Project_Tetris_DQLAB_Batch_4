@@ -28,7 +28,7 @@ st.markdown(
 
 st.header('Disclaimer 	:heavy_exclamation_mark:')
 st.text('Data diambil berdasarkkan jawaban responden dari pelaku/karyawan UMKM yang memungkinkan diisi tidak sesuai realita')
-tabel = pd.read_csv('../projectDQLab/data_umkm_ke4_openrevine_202402171115.csv')
+tabel = pd.read_csv('https://raw.githubusercontent.com/MaulanaYusufIkhsanRobbani/UMKMJawaTimurDashboard/main/data_umkm_ke4_openrevine_202402171115.csv')
 numerik = ['ID_DT_BINAAN_EXCEL','TAHUN_MULAI_USAHA','UMUR',
            'JML_TENAGA_KERJA_2019','JML_TENAGA_KERJA_2020',
            'JML_TENAGA_KERJA_2021','OMSET_2019','OMSET_2020',
@@ -433,132 +433,132 @@ plt.grid(True)
 st.pyplot(plt)
 plt.clf()
 
-#Machine Learning Section
-# split data untuk training model dan test
-from sklearn.model_selection import train_test_split
+# #Machine Learning Section
+# # split data untuk training model dan test
+# from sklearn.model_selection import train_test_split
 
-#feature = tabel.drop(columns='purchased')
-numerik_train = ['RATA2_JML_TENAGA_KERJA', 'RATA2_BIAYA_PRO0DUKSI','RATA2_GAJI']
-feature = tabel[numerik_train]
-target = tabel[['RATA2_OMSET']]
+# #feature = tabel.drop(columns='purchased')
+# numerik_train = ['RATA2_JML_TENAGA_KERJA', 'RATA2_BIAYA_PRO0DUKSI','RATA2_GAJI']
+# feature = tabel[numerik_train]
+# target = tabel[['RATA2_OMSET']]
 
-feature_purchase_train, feature_purchase_test, target_purchase_train, target_purchase_test = train_test_split(feature, target, test_size=0.20, random_state=42)
+# feature_purchase_train, feature_purchase_test, target_purchase_train, target_purchase_test = train_test_split(feature, target, test_size=0.20, random_state=42)
 
-from sklearn.ensemble import HistGradientBoostingRegressor
-from sklearn.model_selection import train_test_split
-from sklearn.impute import SimpleImputer
-
-
-numerik_train = ['RATA2_JML_TENAGA_KERJA', 'RATA2_BIAYA_PRO0DUKSI','RATA2_GAJI']
-feature = tabel[numerik_train]
-target = tabel[['RATA2_OMSET']]
-
-# Membuat imputer agar nilai kosong terisi di suatu feature
-imputer_feature = SimpleImputer(strategy='mean')  # or median, most_frequent, constant
-feature_imputed = imputer_feature.fit_transform(feature)
-
-# Sama seperti diatas namun untuk data test
-imputer_target = SimpleImputer(strategy='mean')  # or median, most_frequent, constant
-target_imputed = imputer_target.fit_transform(target)
+# from sklearn.ensemble import HistGradientBoostingRegressor
+# from sklearn.model_selection import train_test_split
+# from sklearn.impute import SimpleImputer
 
 
-# Split data
-feature_train, feature_test, target_train, target_test = train_test_split(feature_imputed, target_imputed, test_size=0.20, random_state=42)
+# numerik_train = ['RATA2_JML_TENAGA_KERJA', 'RATA2_BIAYA_PRO0DUKSI','RATA2_GAJI']
+# feature = tabel[numerik_train]
+# target = tabel[['RATA2_OMSET']]
 
-# Pemanggilan model
-model = HistGradientBoostingRegressor()
+# # Membuat imputer agar nilai kosong terisi di suatu feature
+# imputer_feature = SimpleImputer(strategy='mean')  # or median, most_frequent, constant
+# feature_imputed = imputer_feature.fit_transform(feature)
 
-# Train model
-model.fit(feature_train, target_train.ravel())
+# # Sama seperti diatas namun untuk data test
+# imputer_target = SimpleImputer(strategy='mean')  # or median, most_frequent, constant
+# target_imputed = imputer_target.fit_transform(target)
 
-# Model yang sudah siap memprediksi
-predictions = model.predict(feature_test)
 
-# Mengukur akurasi model dengan mae, nilai mutlak
-from sklearn.metrics import mean_absolute_error
-mae = mean_absolute_error(target_test, predictions)
-print("Mean Absolute Error (MAE):", mae)
+# # Split data
+# feature_train, feature_test, target_train, target_test = train_test_split(feature_imputed, target_imputed, test_size=0.20, random_state=42)
 
-# mengukur akurasi model dengan R2 score (coeficient of determination)
-from sklearn.metrics import r2_score
-r2 = r2_score(target_test, predictions)
-print("R² Score:", r2)
+# # Pemanggilan model
+# model = HistGradientBoostingRegressor()
 
-# Mendefinisikan data poin
-# Misalkan rata2 jumlah tenaga kerja sejumlah 7 orang, rata2 biaya produksi sebesar Rp. 5 jt, rata2 gaji karyawan sebesar 15 jt maka berapa rata2 omset usahanya
-st.header('Prediksi Omset menggunakan input jumlah tenaga kerja, biaya produksi, dan gaji karyawan ')
-st.text('Predikasi menggunakan model Hist Gradient Booster dengan data test jumlah tenaga kerja, biaya produksi, dan gaji karyawan untuk prediksi Omset')
-a=st.number_input(
-    'Masukan Jumlah tenaga kerja suatu usaha (0 sampai 50)',
-    min_value=0,
-    max_value=50,
-    step=1,
-    value=7
-)
-b=st.number_input(
-    'Masukan rata-rata biaya produksi suatu usaha ',
-    min_value=0,
-    max_value=10000000000,
-    value=5000000
-)
-c=st.number_input(
-    'Masukan rata-rata gaji karyawan',
-    min_value=0,
-    max_value=1000000000,
-    value=15000000
-)
-new_data = [[a, b, c]]
+# # Train model
+# model.fit(feature_train, target_train.ravel())
 
-# Use the imputer to handle any potential missing values
-new_data_imputed = imputer_feature.transform(new_data)
+# # Model yang sudah siap memprediksi
+# predictions = model.predict(feature_test)
 
-# Use the model to predict 'RATA2_OMSET' for the new data point
-new_prediction = model.predict(new_data_imputed)
+# # Mengukur akurasi model dengan mae, nilai mutlak
+# from sklearn.metrics import mean_absolute_error
+# mae = mean_absolute_error(target_test, predictions)
+# print("Mean Absolute Error (MAE):", mae)
 
-st.write("Prediksi nilai rata-rata omset adalah:", new_prediction[0])
+# # mengukur akurasi model dengan R2 score (coeficient of determination)
+# from sklearn.metrics import r2_score
+# r2 = r2_score(target_test, predictions)
+# print("R² Score:", r2)
 
-#Machine Learning Section 2
-st.header('Clustering UMKM berdasarkan Rata-rata Omset dan Klasifikasi Usaha')
-tabel_encoded = tabel
-#Mengisi nilai kosong di 2 kolom ini
-tabel_encoded['RATA2_OMSET'].fillna(tabel_encoded['RATA2_OMSET'].median(), inplace=True)
-tabel_encoded['KLasIFIKasI_USAHA'].fillna(tabel_encoded['KLasIFIKasI_USAHA'].mode()[0], inplace=True)
+# # Mendefinisikan data poin
+# # Misalkan rata2 jumlah tenaga kerja sejumlah 7 orang, rata2 biaya produksi sebesar Rp. 5 jt, rata2 gaji karyawan sebesar 15 jt maka berapa rata2 omset usahanya
+# st.header('Prediksi Omset menggunakan input jumlah tenaga kerja, biaya produksi, dan gaji karyawan ')
+# st.text('Predikasi menggunakan model Hist Gradient Booster dengan data test jumlah tenaga kerja, biaya produksi, dan gaji karyawan untuk prediksi Omset')
+# a=st.number_input(
+#     'Masukan Jumlah tenaga kerja suatu usaha (0 sampai 50)',
+#     min_value=0,
+#     max_value=50,
+#     step=1,
+#     value=7
+# )
+# b=st.number_input(
+#     'Masukan rata-rata biaya produksi suatu usaha ',
+#     min_value=0,
+#     max_value=10000000000,
+#     value=5000000
+# )
+# c=st.number_input(
+#     'Masukan rata-rata gaji karyawan',
+#     min_value=0,
+#     max_value=1000000000,
+#     value=15000000
+# )
+# new_data = [[a, b, c]]
 
-# One-hot encoding
-one_hot = pd.get_dummies(tabel_encoded['KLasIFIKasI_USAHA'])
-# Join the encoded df
-tabel_encoded = tabel_encoded.join(one_hot)
+# # Use the imputer to handle any potential missing values
+# new_data_imputed = imputer_feature.transform(new_data)
 
-from sklearn.preprocessing import LabelEncoder
+# # Use the model to predict 'RATA2_OMSET' for the new data point
+# new_prediction = model.predict(new_data_imputed)
 
-# Create a label encoder object, mengubah data kategorik jadi numerik
-le = LabelEncoder()
+# st.write("Prediksi nilai rata-rata omset adalah:", new_prediction[0])
 
-# Fit and transform the 'KLASIFIKASI_USAHA' column
-tabel_encoded['KLasIFIKasI_USAHA'] = le.fit_transform(tabel_encoded['KLasIFIKasI_USAHA'])
+# #Machine Learning Section 2
+# st.header('Clustering UMKM berdasarkan Rata-rata Omset dan Klasifikasi Usaha')
+# tabel_encoded = tabel
+# #Mengisi nilai kosong di 2 kolom ini
+# tabel_encoded['RATA2_OMSET'].fillna(tabel_encoded['RATA2_OMSET'].median(), inplace=True)
+# tabel_encoded['KLasIFIKasI_USAHA'].fillna(tabel_encoded['KLasIFIKasI_USAHA'].mode()[0], inplace=True)
 
-from sklearn.preprocessing import StandardScaler
+# # One-hot encoding
+# one_hot = pd.get_dummies(tabel_encoded['KLasIFIKasI_USAHA'])
+# # Join the encoded df
+# tabel_encoded = tabel_encoded.join(one_hot)
 
-# Define the features
-features = ['RATA2_OMSET', 'KLasIFIKasI_USAHA']
+# from sklearn.preprocessing import LabelEncoder
 
-# Scale the features
-scaler = StandardScaler()
-tabel_scaled = scaler.fit_transform(tabel_encoded[features])
+# # Create a label encoder object, mengubah data kategorik jadi numerik
+# le = LabelEncoder()
 
-from sklearn.cluster import KMeans
+# # Fit and transform the 'KLASIFIKASI_USAHA' column
+# tabel_encoded['KLasIFIKasI_USAHA'] = le.fit_transform(tabel_encoded['KLasIFIKasI_USAHA'])
 
-# Create a KMeans object
-kmeans = KMeans(n_clusters=7, random_state=0)
+# from sklearn.preprocessing import StandardScaler
 
-# Fit the model to the data and predict the cluster assignments
-tabel_encoded['Cluster'] = kmeans.fit_predict(tabel_scaled)
+# # Define the features
+# features = ['RATA2_OMSET', 'KLasIFIKasI_USAHA']
 
-# Print the size of the clusters
-st.write(tabel_encoded['Cluster'].value_counts())
+# # Scale the features
+# scaler = StandardScaler()
+# tabel_scaled = scaler.fit_transform(tabel_encoded[features])
 
-# Print the mean 'RATA2_OMSET' and 'KLASIFIKASI_USAHA' for each cluster
-st.write(tabel_encoded.groupby('Cluster')[features].mean())
+# from sklearn.cluster import KMeans
+
+# # Create a KMeans object
+# kmeans = KMeans(n_clusters=7, random_state=0)
+
+# # Fit the model to the data and predict the cluster assignments
+# tabel_encoded['Cluster'] = kmeans.fit_predict(tabel_scaled)
+
+# # Print the size of the clusters
+# st.write(tabel_encoded['Cluster'].value_counts())
+
+# # Print the mean 'RATA2_OMSET' and 'KLASIFIKASI_USAHA' for each cluster
+# st.write(tabel_encoded.groupby('Cluster')[features].mean())
 
 st.header('Kesimpulan')
 st.markdown(
