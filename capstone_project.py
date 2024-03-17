@@ -350,7 +350,7 @@ st.header('Omset per Tahun')
 tabel_melted_filtered = tabel_melted[tabel_melted['KAB_KOTA'].isin(kolom_kabkota)]
 plt.figure(figsize=(24,12))
 sns.lineplot(data=tabel_melted_filtered, x='Year', y='OMSET', hue='KAB_KOTA')
-plt.ylim(0, tabel_melted_filtered['OMSET'].max() * 0.2) #0.5 buat stretch smb y
+plt.ylim(0, tabel_melted_filtered['OMSET'].max() * 0.1) #0.5 buat stretch smb y
 plt.legend(prop={'size': 5})
 plt.title('Omset setiap tahun')
 st.pyplot(plt)
