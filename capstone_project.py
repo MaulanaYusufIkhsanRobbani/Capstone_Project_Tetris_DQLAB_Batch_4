@@ -26,7 +26,7 @@ st.markdown(
     """
 )
 
-tabel = pd.read_csv('https://raw.githubusercontent.com/MaulanaYusufIkhsanRobbani/UMKMJawaTimurDashboard/main/data_umkm_ke4_openrevine_202402171115.csv')
+tabel = pd.read_csv('https://raw.githubusercontent.com/MaulanaYusufIkhsanRobbani/UMKMJawaTimurDashboard/main/data_umkm_final_202403181645.csv')
 #tabel = pd.read_csv('D:/Local Disk C/Python project/projectDQLab/data_umkm_ke4_openrevine_202402171115.csv')
 #D:\Local Disk C\Python project\projectDQLab\data_umkm_ke4_openrevine_202402171115.csv
 numerik = ['ID_DT_BINAAN_EXCEL','TAHUN_MULAI_USAHA','UMUR',
@@ -343,8 +343,8 @@ tabel_melted = tabel.melt(id_vars='KAB_KOTA', value_vars=['OMSET_2019', 'OMSET_2
 list_kabkota = tabel['KAB_KOTA'].unique()
 kolom_kabkota = st.multiselect(
     'Pilih Kab/Kota',
-    ('[19] MADIUN', '[05] BLITAR', '[77] KOTA MADIUN', '[13] PROBOLINGGO', '[02] PONOROGO' ,'[20] MAGETAN' ,'[22] BOJONEGORO' ,'[71] KOTA KEDIRI', '[14] PASURUAN', '[73] KOTA MALANG', '[17] JOMBANG', '[16] MOJOKERTO', '[11] BONDOWOSO', '[15] SIDOARJO', '[07] MALANG', '[18] NGANJUK', '[21] NGAWI', '[78] KOTA SURABAYA', '[06] KEDIRI', '[72] KOTA BLITAR', '[24] LAMONGAN', '[04] TULUNGAGUNG', '[10] BANYUWANGI', '[9] JEMBER', '[76] KOTA MOJOKERTO', '[79] KOTA BATU', '[23] TUBAN', '[75] KOTA PASURUAN', '[25] GRESIK', '[27] SAMPANG', '[29] SUMENEP', '[8] LUMAJANG', '[28] PAMEKASAN', '[03] TRENGGALEK', '[08] LUMAJANG', '[09] JEMBER','[12] SITUBONDO', '[26] BANGKALAN', '[01] PACITAN', '[74] KOTA PROBOLINGGO')
-    ,default=('[07] MALANG','[14] PASURUAN','[73] KOTA MALANG') #Tertinggi ke-3
+    (' MADIUN', ' BLITAR', ' KOTA MADIUN', ' PROBOLINGGO', ' PONOROGO' ,' MAGETAN' ,' BOJONEGORO' ,' KOTA KEDIRI', ' PASURUAN', ' KOTA MALANG', ' JOMBANG', ' MOJOKERTO', ' BONDOWOSO', ' SIDOARJO', ' MALANG', ' NGANJUK', ' NGAWI', ' KOTA SURABAYA', ' KEDIRI', ' KOTA BLITAR', ' LAMONGAN', ' TULUNGAGUNG', ' BANYUWANGI', ' JEMBER', ' KOTA MOJOKERTO', ' KOTA BATU', ' TUBAN', ' KOTA PASURUAN', ' GRESIK', ' SAMPANG', ' SUMENEP', ' LUMAJANG', ' PAMEKASAN', ' TRENGGALEK', ' LUMAJANG', ' JEMBER',' SITUBONDO', ' BANGKALAN', ' PACITAN', ' KOTA PROBOLINGGO')
+    ,default=(' MALANG',' PASURUAN',' KOTA MALANG') #Tertinggi ke-3
 )
 st.header('Omset per Tahun')
 tabel_melted_filtered = tabel_melted[tabel_melted['KAB_KOTA'].isin(kolom_kabkota)]
