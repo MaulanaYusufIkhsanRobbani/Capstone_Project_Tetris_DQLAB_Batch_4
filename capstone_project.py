@@ -26,7 +26,7 @@ st.markdown(
     """
 )
 
-tabel = pd.read_csv('https://raw.githubusercontent.com/MaulanaYusufIkhsanRobbani/UMKMJawaTimurDashboard/main/data_umkm_final_202403181645.csv')
+tabel = pd.read_csv('https://raw.githubusercontent.com/MaulanaYusufIkhsanRobbani/CapstoneProjectTetrisDQLABBatch4/main/data_umkm_final_202403181645.csv')
 #tabel = pd.read_csv('D:/Local Disk C/Python project/projectDQLab/data_umkm_ke4_openrevine_202402171115.csv')
 #D:\Local Disk C\Python project\projectDQLab\data_umkm_ke4_openrevine_202402171115.csv
 numerik = ['ID_DT_BINAAN_EXCEL','TAHUN_MULAI_USAHA','UMUR',
