@@ -225,7 +225,6 @@ with tab4:
 st.subheader('Kesimpulan 1')
 st.markdown("""Kebutuhan Pinjaman Luar yang masih tinggi terlepas pendidikan, jenis usaha, klasifikasi usaha(Berdasarkan jumlah Omset) memilikii porsi lebih dari 50%. Sehingga, perlunya akses yang banyak terhadap pinjaman untuk UMKM  """
 )
-st.header('Porsi UMKM')
 col1, col2 = st.columns([2,3])
 
 with col1:
