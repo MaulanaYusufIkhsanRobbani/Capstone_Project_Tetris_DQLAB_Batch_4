@@ -3,4 +3,5 @@ This is my first Data Analytics Project. This project coverage all about Small M
 You can check it from this website:
 https://capstoneprojecttetrisdqlabbatch4-ikhsan-robbani.streamlit.app/
 
-![alt text](https://github.com/MaulanaYusufIkhsanRobbani/Capstone_Project_Tetris_DQLAB_Batch_4/blob/main/Screenshot%2024-10-12 131339.jpg?raw=true)
+
+![Screenshot 2024-10-12 131339](https://github.com/user-attachments/assets/cb4a70e9-d5b0-421b-b251-f122b4990197)
